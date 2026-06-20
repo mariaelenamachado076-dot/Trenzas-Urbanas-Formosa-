@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trenzas Urbanas</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#a88ac0;color:#fff}
+header{padding:30px;text-align:center}
+.logo{width:180px;height:180px;border:3px dashed #fff;border-radius:20px;display:flex;align-items:center;justify-content:center;margin:auto}
+.menu{position:fixed;top:15px;left:15px;font-size:30px;cursor:pointer}
+nav{position:fixed;left:0;top:0;width:0;height:100%;overflow:hidden;background:#6f4a8e;transition:.3s;z-index:10}
+nav a{display:block;color:#fff;padding:15px;text-decoration:none}
+section{padding:25px}
+.card{background:rgba(255,255,255,.12);padding:20px;border-radius:15px;margin-bottom:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
+.imgph{height:180px;border:2px dashed #fff;border-radius:10px;display:flex;align-items:center;justify-content:center}
+button,a.btn{background:#25D366;color:#fff;border:none;padding:10px 15px;border-radius:8px;text-decoration:none;cursor:pointer}
+.float{position:fixed;bottom:20px;right:20px}
+#cart{position:fixed;top:20px;right:20px;background:#fff;color:#000;padding:10px;border-radius:10px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="menu" onclick="nav.style.width='260px'">☰</div>
+<nav id="nav">
+<a href="#" onclick="nav.style.width='0'">Cerrar ✖</a>
+<a href="#quienes">¿Quiénes somos?</a>
+<a href="#reservas">Reservas</a>
+<a href="#promos">Promos</a>
+<a href="#catalogo">Catálogo</a>
+<a href="#redes">Redes</a>
+</nav>
+
+<div id="cart">🛒 <span id="cantidad">0</span></div>
+
+<header>
+<div class="logo">TU LOGO AQUÍ</div>
+<h1>Trenzas Urbanas</h1>
+<p>Especialistas en trenzas, box braids, fulanis, coletas y diseños personalizados.</p>
+</header>
+
+<section id="quienes">
+<div class="card">
+<h2>¿Quiénes somos?</h2>
+<p>Espacio para tu historia y presentación del emprendimiento.</p>
+</div>
+</section>
+
+<section id="reservas">
+<div class="card">
+<h2>Reservas</h2>
+<p>Servicios con extensiones: seña del 25%.</p>
+<p>Servicios sin extensiones: seña de $5.000.</p>
+<a class="btn" href="https://link.mercadopago.com.ar/marianamachado" target="_blank">Pagar Seña</a>
+</div>
+</section>
+
+<section id="promos">
+<h2>Promociones del Mes</h2>
+<div class="card">
+<div class="imgph">IMAGEN PROMO</div>
+<h3>Promo Editable</h3>
+<p>Agregá aquí tus promociones mensuales.</p>
+<button onclick="agregar('Promo Mensual',0)">Agregar al carrito</button>
+</div>
+</section>
+
+<section id="catalogo">
+<h2>Catálogo</h2>
+<div class="grid" id="catalogoGrid"></div>
+</section>
+
+<section id="redes">
+<div class="card">
+<h2>Redes Sociales</h2>
+<p>Instagram: @trenzas.urbanas_fsa</p>
+<p>Facebook y TikTok conectados.</p>
+</div>
+</section>
+
+<a class="btn float" href="https://wa.me/543705141113?text=Quiero%20reservar%20un%20turno..." target="_blank">WhatsApp</a>
+
+<script>
+const servicios=[
+["Frontales Simples","$10.000","Diseño frontal simple."],
+["Frontales con Diseño","$15.000","Diseño personalizado."],
+["Coronas Simples","$20.000","Corona clásica."],
+["Coronas con Diseño","$30.000","Corona personalizada."],
+["Box Braids Medianas","$120.000","Incluye 5 paquetes. Duración 8-10 horas. Seña 25%."],
+["Box Braids Jumbo","$80.000","Incluye 4 paquetes. Duración 4-6 horas. Seña 25%."],
+["Box Braids Small","$160.000","Incluye 6/7 paquetes. Duración 10-12 horas. Seña 25%."],
+["Box Braids Cortitas","$100.000","Hasta hombros. Incluye 4 paquetes."],
+["Fulanis Braids","$120.000","Incluye 5 paquetes. Duración 8-10 horas."],
+["Micro Braids","$70.000","Extensiones sintéticas de kanekalon."],
+["Vinchas con Extensiones","$45.000","Incluye 1 paquete de kanekalon."],
+["Coleta Bubble Glam","$30.000-$60.000","Con o sin extensiones."]
+];
+
+let carrito=[];
+const grid=document.getElementById("catalogoGrid");
+
+servicios.forEach(s=>{
+grid.innerHTML+=`
+<div class="card">
+<div class="imgph">AGREGAR IMAGEN</div>
+<h3>${s[0]}</h3>
+<p><strong>${s[1]}</strong></p>
+<p>${s[2]}</p>
+<button onclick="agregar('${s[0]}','${s[1]}')">Agregar al carrito</button>
+</div>`
+});
+
+function agregar(nombre,precio){
+carrito.push({nombre,precio});
+document.getElementById("cantidad").innerText=carrito.length;
+}
+
+document.getElementById("cart").onclick=function(){
+let msg="Hola, quiero reservar:%0A";
+carrito.forEach(i=>msg+="• "+i.nombre+" - "+i.precio+"%0A");
+window.open("https://wa.me/543705141113?text="+msg);
+}
+</script>
+
+</body>
+</html>
