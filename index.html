@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trenzas Urbanas</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:Arial,sans-serif;color:#fff;background:radial-gradient(circle at 15% 20%, rgba(255,255,255,.12) 2px, transparent 4px),radial-gradient(circle at 80% 30%, rgba(255,255,255,.08) 3px, transparent 5px),radial-gradient(circle at 70% 80%, rgba(255,255,255,.10) 2px, transparent 4px),radial-gradient(circle at 30% 70%, rgba(255,255,255,.06) 4px, transparent 6px),linear-gradient(135deg,#9d7ec4,#a88ac0,#b59bd0);background-attachment:fixed;}
+body{margin:0;font-family:'Poppins',sans-serif;background:#a88ac0;color:#fff;};background:radial-gradient(circle at 15% 20%, rgba(255,255,255,.12) 2px, transparent 4px),radial-gradient(circle at 80% 30%, rgba(255,255,255,.08) 3px, transparent 5px),radial-gradient(circle at 70% 80%, rgba(255,255,255,.10) 2px, transparent 4px),radial-gradient(circle at 30% 70%, rgba(255,255,255,.06) 4px, transparent 6px),linear-gradient(135deg,#9d7ec4,#a88ac0,#b59bd0);background-attachment:fixed;}
 header{padding:30px;text-align:center}
 .logo{width:180px;height:180px;object-fit:contain;display:block;margin:auto;}
 .menu{position:fixed;top:15px;left:15px;font-size:30px;cursor:pointer}
@@ -23,6 +24,35 @@ button,a.btn{background:#25D366;color:#fff;border:none;padding:10px 15px;border-
 .historia-img{width:100%;display:block;border-radius:20px;transition:transform .4s ease;}
 .historia-container:hover .historia-img{transform:scale(1.05);}
 .historia-btn{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(111,74,142,.9);color:#fff;padding:12px 25px;border-radius:30px;font-weight:bold;font-size:16px;box-shadow:0 4px 15px rgba(0,0,0,.3);white-space:nowrap;}
+/* TÍTULO PRINCIPAL */
+h1{
+font-family:'Bebas Neue',sans-serif;
+font-size:70px;
+letter-spacing:4px;
+text-transform:uppercase;
+margin-bottom:10px;
+}
+
+/* SUBTÍTULOS */
+h2,h3{
+font-family:'Playfair Display',serif;
+font-weight:700;
+}
+
+/* DESCRIPCIONES */
+p{
+font-family:'Poppins',sans-serif;
+font-size:18px;
+line-height:1.6;
+}
+
+/* PRECIOS */
+.precio{
+font-family:'Bebas Neue',sans-serif;
+font-size:32px;
+letter-spacing:2px;
+}
+
 </style>
 </head>
 <body>
@@ -31,7 +61,7 @@ button,a.btn{background:#25D366;color:#fff;border:none;padding:10px 15px;border-
 <nav id="nav">
 <a href="#" onclick="nav.style.width='0'">Cerrar ✖</a>
 <a href="#quienes">CONOCEME</a>
-<a href="#reservas">Reservas</a>
+<a href="#reservas">RESERVA TU CITA</a>
 <a href="#promos">Promos</a>
 <a href="#catalogo">Catálogo</a>
 <a href="#redes">Redes</a>
@@ -60,12 +90,28 @@ Ver mi historia en Instagram
 
 <section id="reservas">
 <div class="card">
-<h2>Reservas</h2>
-<p>Servicios con extensiones: seña del 25%.</p>
-<p>Servicios sin extensiones: seña de $5.000.</p>
-<a class="btn" href="https://link.mercadopago.com.ar/marianamachado" target="_blank">Pagar Seña</a>
+
+<h2>Reservá tu turno</h2>
+
+<p>Elegí el tipo de servicio que querés reservar:</p>
+
+<h3>✨ Servicios sin extensiones</h3>
+<p>Seña fija de $5.000.</p>
+<a class="btn" href="https://mpago.la/1A9AMqs" target="_blank">
+Reservar sin extensiones
+</a>
+
+<br><br>
+
+<h3>💜 Servicios con extensiones</h3>
+<p>Seña fija del servicio con extensiones de $30.000.</p>
+<a class="btn" href="https://mpago.la/1sJmJyQ" target="_blank">
+Reservar con extensiones
+</a>
+
 </div>
 </section>
+
 
 <section id="promos">
 <h2>Promociones del Mes</h2>
