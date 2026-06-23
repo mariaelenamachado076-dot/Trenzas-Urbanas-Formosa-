@@ -24,7 +24,19 @@ button,a.btn{background:#25D366;color:#fff;border:none;padding:10px 15px;border-
 .historia-img{width:100%;display:block;border-radius:20px;transition:transform .4s ease;}
 .historia-container:hover .historia-img{transform:scale(1.05);}
 .historia-btn{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(111,74,142,.9);color:#fff;padding:12px 25px;border-radius:30px;font-weight:bold;font-size:16px;box-shadow:0 4px 15px rgba(0,0,0,.3);white-space:nowrap;}
-/* TÍTULO PRINCIPAL */
+.galeria{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:10px;
+}
+
+.galeria img{
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+border-radius:15px;
+}
+  /* TÍTULO PRINCIPAL */
 h1{
 font-family:'Bebas Neue',sans-serif;
 font-size:50px;
@@ -71,6 +83,7 @@ letter-spacing:2px;
 <a href="#catalogo">CATALOGO DE SERVICIOS</a>
 <a href="#reservas">RESERVA TU CITA</a>
 <a href="#promos">PROMOS</a>
+<a href="#galeria">GALERIA DE TRABAJOS </a>
 <a href="#redes">NUESTRAS REDES</a>
 </nav>
 
@@ -133,6 +146,36 @@ Reservar con extensiones
 <button onclick="agregar('Promo Mensual',0)">Agregar al carrito</button>
 </div>
 </section>
+
+<section id="galeria">
+<div class="card">
+<h2> Galería de Trabajos</h2>
+
+<div class="galeria">
+<img src="trabajo1.jpg">
+<img src="trabajo2.jpg">
+<img src="trabajo3.jpg">
+<img src="trabajo4.jpg">
+<img src="trabajo5.jpg">
+<img src="trabajo6.jpg">
+<img src="trabajo7.jpg">
+<img src="trabajo8.jpg">
+<img src="trabajo9.jpg">
+<img src="trabajo10.jpg">
+<img src="trabajo11.jpg">
+<img src="trabajo12.jpg">
+<img src="trabajo13.jpg">
+<img src="trabajo14.jpg">
+<img src="trabajo15.jpg">
+</div>
+
+</div>
+</section>
+
+<section id="redes">
+...
+</section>
+
 
 <section id="redes">
 <div class="card">
