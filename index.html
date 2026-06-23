@@ -81,13 +81,15 @@ letter-spacing:2px;
 <a href="#" onclick="nav.style.width='0'">Cerrar ✖</a>
 <a href="#quienes">CONOCEME</a>
 <a href="#catalogo">CATALOGO DE SERVICIOS</a>
-<a href="#reservas">RESERVA TU CITA</a>
 <a href="#promos">PROMOS</a>
 <a href="#galeria">GALERIA DE TRABAJOS </a>
 <a href="#redes">NUESTRAS REDES</a>
 </nav>
 
-<div id="cart">🛒 <span id="cantidad">0</span></div>
+<div id="cart">
+🛒 RESERVAR (<span id="cantidad">0</span>)
+</div>
+
 
 <header>
 <img src="logo.png" alt="Logo Trenzas Urbanas" class="logo">
@@ -111,30 +113,6 @@ Ver mi historia en Instagram
 <section id="catalogo">
 <h2>Catálogo</h2>
 <div class="grid" id="catalogoGrid"></div>
-</section>
-
-<section id="reservas">
-<div class="card">
-
-<h2>Reservá tu turno</h2>
-
-<p>Elegí el tipo de servicio que querés reservar:</p>
-
-<h3>✨ Servicios sin extensiones</h3>
-<p>Seña fija de $5.000.</p>
-<a class="btn" href="https://mpago.la/1A9AMqs" target="_blank">
-Reservar sin extensiones
-</a>
-
-<br><br>
-
-<h3>💜 Servicios con extensiones</h3>
-<p>Seña fija del servicio con extensiones de $30.000.</p>
-<a class="btn" href="https://mpago.la/1sJmJyQ" target="_blank">
-Reservar con extensiones
-</a>
-
-</div>
 </section>
 
 <section id="PROMOS">
@@ -190,19 +168,20 @@ Reservar con extensiones
 
 <script>
 const servicios=[
-["Frontales Simples","$10.000","Diseño frontal simple."],
-["Frontales con Diseño","$15.000","Diseño personalizado."],
-["Coronas Simples","$20.000","Corona clásica."],
-["Coronas con Diseño","$30.000","Corona personalizada."],
-["Box Braids Medianas","$120.000","Incluye 5 paquetes. Duración 8-10 horas. Seña 25%."],
-["Box Braids Jumbo","$80.000","Incluye 4 paquetes. Duración 4-6 horas. Seña 25%."],
-["Box Braids Small","$160.000","Incluye 6/7 paquetes. Duración 10-12 horas. Seña 25%."],
-["Box Braids Cortitas","$100.000","Hasta hombros. Incluye 4 paquetes."],
-["Fulanis Braids","$120.000","Incluye 5 paquetes. Duración 8-10 horas."],
-["Micro Braids","$70.000","Extensiones sintéticas de kanekalon."],
-["Vinchas con Extensiones","$45.000","Incluye 1 paquete de kanekalon."],
-["Coleta Bubble Glam","$30.000-$60.000","Con o sin extensiones."]
+["Frontales Simples","$10.000","Diseño frontal simple.","sin"],
+["Frontales con Diseño","$15.000","Diseño personalizado.","sin"],
+["Coronas Simples","$20.000","Corona clásica.","sin"],
+["Coronas con Diseño","$30.000","Corona personalizada.","sin"],
+["Box Braids Medianas","$120.000","Incluye 5 paquetes. Duración 8-10 horas.","con"],
+["Box Braids Jumbo","$80.000","Incluye 4 paquetes. Duración 4-6 horas.","con"],
+["Box Braids Small","$160.000","Incluye 6/7 paquetes. Duración 10-12 horas.","con"],
+["Box Braids Cortitas","$100.000","Hasta hombros. Incluye 4 paquetes.","con"],
+["Fulanis Braids","$120.000","Incluye 5 paquetes. Duración 8-10 horas.","con"],
+["Micro Braids","$70.000","Extensiones sintéticas de kanekalon.","con"],
+["Vinchas con Extensiones","$45.000","Incluye 1 paquete de kanekalon.","con"],
+["Coleta Bubble Glam","$30.000-$60.000","Con o sin extensiones.","sin"]
 ];
+
 
 let carrito=[];
 const grid=document.getElementById("catalogoGrid");
@@ -214,20 +193,56 @@ grid.innerHTML+=`
 <h3>${s[0]}</h3>
 <p><strong>${s[1]}</strong></p>
 <p>${s[2]}</p>
-<button onclick="agregar('${s[0]}','${s[1]}')">Agregar al carrito</button>
+<button onclick="agregar('${s[0]}','${s[1]}','${s[3]}')">
+Agregar al carrito
+</button>
+
 </div>`
 });
 
-function agregar(nombre,precio){
-carrito.push({nombre,precio});
+function agregar(nombre,precio,tipo){
+carrito.push({nombre,precio,tipo});
 document.getElementById("cantidad").innerText=carrito.length;
 }
 
 document.getElementById("cart").onclick=function(){
-let msg="Hola, quiero reservar:%0A";
-carrito.forEach(i=>msg+="• "+i.nombre+" - "+i.precio+"%0A");
-window.open("https://wa.me/543705141113?text="+msg);
+
+if(carrito.length===0){
+alert("Todavía no agregaste ningún servicio.");
+return;
 }
+
+let servicio=carrito[0];
+
+let mensaje=
+"Hola, quiero reservar:%0A"+
+"Servicio: "+servicio.nombre+"%0A"+
+"Precio: "+servicio.precio;
+
+if(servicio.tipo==="con"){
+
+window.open("https://mpago.la/1sJmJyQ");
+
+setTimeout(()=>{
+window.open(
+"https://wa.me/543705141113?text="+mensaje
+);
+},1000);
+
+}else{
+
+window.open("https://mpago.la/1A9AMqs");
+
+setTimeout(()=>{
+window.open(
+"https://wa.me/543705141113?text="+mensaje
+);
+},1000);
+
+}
+
+}
+
 </script>
 
 </body>
