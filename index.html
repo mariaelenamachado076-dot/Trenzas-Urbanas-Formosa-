@@ -87,7 +87,7 @@ letter-spacing:2px;
 </nav>
 
 <div id="cart">
-🛒 RESERVAR (<span id="cantidad">0</span>)
+📅 MI RESERVA (<span id="cantidad">0</span>)
 </div>
 
 
@@ -212,32 +212,56 @@ alert("Todavía no agregaste ningún servicio.");
 return;
 }
 
-let servicio=carrito[0];
+let textoServicios="";
+let llevaExtensiones=false;
 
-let mensaje=
-"Hola, quiero reservar:%0A"+
-"Servicio: "+servicio.nombre+"%0A"+
-"Precio: "+servicio.precio;
+carrito.forEach(servicio=>{
+
+textoServicios+=`
+• ${servicio.nombre}
+${servicio.precio}
+
+`;
 
 if(servicio.tipo==="con"){
+llevaExtensiones=true;
+}
 
-window.open("https://mpago.la/1sJmJyQ");
+});
 
-setTimeout(()=>{
+let sena=llevaExtensiones ? "$30.000" : "$5.000";
+
+let opcion=confirm(
+"TU RESERVA\n\n"+
+textoServicios+
+"\nSeña requerida: "+sena+
+"\n\nAceptar = WhatsApp"+
+"\nCancelar = Pagar Seña"
+);
+
+if(opcion){
+
+let mensaje="Hola, quiero reservar:%0A%0A";
+
+carrito.forEach(servicio=>{
+mensaje+="• "+servicio.nombre+" - "+servicio.precio+"%0A";
+});
+
 window.open(
 "https://wa.me/543705141113?text="+mensaje
 );
-},1000);
+
+}else{
+
+if(llevaExtensiones){
+
+window.open("https://mpago.la/1sJmJyQ");
 
 }else{
 
 window.open("https://mpago.la/1A9AMqs");
 
-setTimeout(()=>{
-window.open(
-"https://wa.me/543705141113?text="+mensaje
-);
-},1000);
+}
 
 }
 
