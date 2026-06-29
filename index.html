@@ -1,223 +1,204 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Trenzas Urbanas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at 15% 20%, rgba(255,255,255,.12) 2px, transparent 4px), 
-                  radial-gradient(circle at 80% 30%, rgba(255,255,255,.08) 3px, transparent 5px), 
-                  radial-gradient(circle at 70% 80%, rgba(255,255,255,.10) 2px, transparent 4px), 
-                  radial-gradient(circle at 30% 70%, rgba(255,255,255,.06) 4px, transparent 6px), 
-                  linear-gradient(135deg, #9d7ec4, #a88ac0, #b59bd0);
-      background-attachment: fixed;
-      color: #fff;
-    }
-    header {
-      padding: 30px;
-      text-align: center;
-    }
-    .logo {
-      width: 180px;
-      height: 180px;
-      object-fit: contain;
-      display: block;
-      margin: auto;
-    }
-    .menu {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 30px;
-      cursor: pointer;
-    }
-    nav {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 0;
-      height: 100%;
-      overflow: hidden;
-      background: #6f4a8e;
-      transition: .3s;
-      z-index: 10;
-    }
-    nav a {
-      display: block;
-      color: #fff;
-      padding: 15px;
-      text-decoration: none;
-    }
-    section {
-      padding: 25px;
-    }
-    .card {
-      background: rgba(255,255,255,.12);
-      padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 15px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 15px;
-    }
-    .imgph {
-      height: 180px;
-      border: 2px dashed #fff;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    button, a.btn {
-      background: #25D366;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-    }
-    #cart {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #fff;
-      color: #000;
-      padding: 10px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    .historia-container {
-      position: relative;
-      overflow: hidden;
-      border-radius: 20px;
-      margin-top: 15px;
-    }
-    .historia-container a {
-      display: block;
-      text-decoration: none;
-    }
-    .historia-img {
-      width: 100%;
-      display: block;
-      border-radius: 20px;
-      transition: transform .4s ease;
-    }
-    .historia-container:hover .historia-img {
-      transform: scale(1.05);
-    }
-    .historia-btn {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(111,74,142,.9);
-      color: #fff;
-      padding: 12px 25px;
-      border-radius: 30px;
-      font-weight: bold;
-      font-size: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.3);
-      white-space: nowrap;
-    }
-    .galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-    }
-    .galeria img {
-      width: 100%;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-      border-radius: 15px;
-    }
-    /* IMÁGENES DEL CATÁLOGO */
-.card img{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-  border-radius:12px;
-  display:block;
-  margin-bottom:10px;
-}
-    h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 50px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    h2, h3 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-    }
-    p {
-      font-family: 'Poppins', sans-serif;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-    header p {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .precio {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      letter-spacing: 2px;
-    }
-    .descripcion{
-      font-size:14px;  
-      color:#f5f5f5;
-      line-height:1.5;
-      margin:8px 0;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="menu" onclick="nav.style.width='260px'">☰</div>
-  <nav id="nav">
-    <a href="#" onclick="nav.style.width='0'">Cerrar ✖</a>
-    <a href="#quienes">CONÓCEME</a>
-    <a href="#catalogo">CATÁLOGO DE SERVICIOS</a>
-    <a href="#promos">PROMOS</a>
-    <a href="#galeria">GALERÍA DE TRABAJOS</a>
-    <a href="#redes">NUESTRAS REDES</a>
-  </nav>
-
-  <div id="cart">
-    🛒 MI RESERVA (<span id="cantidad">0</span>)
-  </div>
-  <div id="modalCarrito" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:9999;">
-
-<div style="background:#fff;color:#000;width:90%;max-width:500px;margin:40px auto;padding:20px;border-radius:15px;max-height:80vh;overflow:auto;">
-
-<h2>🛒 Mi Reserva</h2>
-
-<div id="listaCarrito"></div>
-
-<hr>
-
-<p>Subtotal: <strong id="subtotal">$0</strong></p>
-<p>Descuento: <strong id="descuento">0%</strong></p>
-<p>Total: <strong id="total">$0</strong></p>
-
-<br>
-
-<button onclick="aplicarDescuento(10)">💜 Aplicar 10%</button>
+<!DOCTYPE html>  <html lang="es">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <title>Trenzas Urbanas</title>  
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">  
+  <style>  
+    body {  
+      margin: 0;  
+      font-family: 'Poppins', sans-serif;  
+      background: radial-gradient(circle at 15% 20%, rgba(255,255,255,.12) 2px, transparent 4px),   
+                  radial-gradient(circle at 80% 30%, rgba(255,255,255,.08) 3px, transparent 5px),   
+                  radial-gradient(circle at 70% 80%, rgba(255,255,255,.10) 2px, transparent 4px),   
+                  radial-gradient(circle at 30% 70%, rgba(255,255,255,.06) 4px, transparent 6px),   
+                  linear-gradient(135deg, #9d7ec4, #a88ac0, #b59bd0);  
+      background-attachment: fixed;  
+      color: #fff;  
+    }  
+    header {  
+      padding: 30px;  
+      text-align: center;  
+    }  
+    .logo {  
+      width: 180px;  
+      height: 180px;  
+      object-fit: contain;  
+      display: block;  
+      margin: auto;  
+    }  
+    .menu {  
+      position: fixed;  
+      top: 15px;  
+      left: 15px;  
+      font-size: 30px;  
+      cursor: pointer;  
+    }  
+    nav {  
+      position: fixed;  
+      left: 0;  
+      top: 0;  
+      width: 0;  
+      height: 100%;  
+      overflow: hidden;  
+      background: #6f4a8e;  
+      transition: .3s;  
+      z-index: 10;  
+    }  
+    nav a {  
+      display: block;  
+      color: #fff;  
+      padding: 15px;  
+      text-decoration: none;  
+    }  
+    section {  
+      padding: 25px;  
+    }  
+    .card {  
+      background: rgba(255,255,255,.12);  
+      padding: 20px;  
+      border-radius: 15px;  
+      margin-bottom: 15px;  
+    }  
+    .grid {  
+      display: grid;  
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  
+      gap: 15px;  
+    }  
+    .imgph {  
+      height: 180px;  
+      border: 2px dashed #fff;  
+      border-radius: 10px;  
+      display: flex;  
+      align-items: center;  
+      justify-content: center;  
+    }  
+    button, a.btn {  
+      background: #25D366;  
+      color: #fff;  
+      border: none;  
+      padding: 10px 15px;  
+      border-radius: 8px;  
+      text-decoration: none;  
+      cursor: pointer;  
+    }  
+    .float {  
+      position: fixed;  
+      bottom: 20px;  
+      right: 20px;  
+    }  
+    #cart {  
+      position: fixed;  
+      top: 20px;  
+      right: 20px;  
+      background: #fff;  
+      color: #000;  
+      padding: 10px;  
+      border-radius: 10px;  
+      cursor: pointer;  
+    }  
+    .historia-container {  
+      position: relative;  
+      overflow: hidden;  
+      border-radius: 20px;  
+      margin-top: 15px;  
+    }  
+    .historia-container a {  
+      display: block;  
+      text-decoration: none;  
+    }  
+    .historia-img {  
+      width: 100%;  
+      display: block;  
+      border-radius: 20px;  
+      transition: transform .4s ease;  
+    }  
+    .historia-container:hover .historia-img {  
+      transform: scale(1.05);  
+    }  
+    .historia-btn {  
+      position: absolute;  
+      bottom: 20px;  
+      left: 50%;  
+      transform: translateX(-50%);  
+      background: rgba(111,74,142,.9);  
+      color: #fff;  
+      padding: 12px 25px;  
+      border-radius: 30px;  
+      font-weight: bold;  
+      font-size: 16px;  
+      box-shadow: 0 4px 15px rgba(0,0,0,.3);  
+      white-space: nowrap;  
+    }  
+    .galeria {  
+      display: grid;  
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));  
+      gap: 10px;  
+    }  
+    .galeria img {  
+      width: 100%;  
+      aspect-ratio: 1/1;  
+      object-fit: cover;  
+      border-radius: 15px;  
+    }  
+    /* IMÁGENES DEL CATÁLOGO */  
+.card img{  
+  width:100%;  
+  height:260px;  
+  object-fit:cover;  
+  border-radius:12px;  
+  display:block;  
+  margin-bottom:10px;  
+}  
+    h1 {  
+      font-family: 'Bebas Neue', sans-serif;  
+      font-size: 50px;  
+      letter-spacing: 4px;  
+      text-transform: uppercase;  
+      margin-bottom: 10px;  
+      text-align: center;  
+    }  
+    h2, h3 {  
+      font-family: 'Playfair Display', serif;  
+      font-weight: 700;  
+    }  
+    p {  
+      font-family: 'Poppins', sans-serif;  
+      font-size: 18px;  
+      line-height: 1.6;  
+    }  
+    header p {  
+      text-align: center;  
+      max-width: 600px;  
+      margin: 0 auto;  
+    }  
+    .precio {  
+      font-family: 'Bebas Neue', sans-serif;  
+      font-size: 32px;  
+      letter-spacing: 2px;  
+    }  
+    .descripcion{  
+      font-size:14px;    
+      color:#f5f5f5;  
+      line-height:1.5;  
+      margin:8px 0;  
+    }  
+  </style>  
+</head>  
+<body>    <div class="menu" onclick="nav.style.width='260px'">☰</div>  
+  <nav id="nav">  
+    <a href="#" onclick="nav.style.width='0'">Cerrar ✖</a>  
+    <a href="#quienes">CONÓCEME</a>  
+    <a href="#catalogo">CATÁLOGO DE SERVICIOS</a>  
+    <a href="#promos">PROMOS</a>  
+    <a href="#galeria">GALERÍA DE TRABAJOS</a>  
+    <a href="#redes">NUESTRAS REDES</a>  
+  </nav>    <div id="cart">  
+    🛒 MI RESERVA (<span id="cantidad">0</span>)  
+  </div>  
+  <div id="modalCarrito" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:9999;">  <div style="background:#fff;color:#000;width:90%;max-width:500px;margin:40px auto;padding:20px;border-radius:15px;max-height:80vh;overflow:auto;">  <h2>🛒 Mi Reserva</h2>  <div id="listaCarrito"></div>  <hr>  <p>Subtotal: <strong id="subtotal">$0</strong></p>  
+<p>Descuento: <strong id="descuento">0%</strong></p>  
+<p>Total: <strong id="total">$0</strong></p>  <br>  <button onclick="aplicarDescuento(10)">💜 Aplicar 10%</button>
 
 <br><br>
 
@@ -225,404 +206,357 @@
 
 <button onclick="cerrarCarrito()">❌ Cerrar</button>
 
+</div>    </div>    <header>  
+    <img src="logo.png" alt="Logo Trenzas Urbanas" class="logo">  
+    <h1>Trenzas Urbanas</h1>  
+    <p>Creamos estilos únicos a través de trenzas personalizadas para todas las edades.</p>  
+  </header>    <!-- ========================= -->    <!-- CONÓCEME -->    <!-- ========================= -->    <section id="quienes">  
+    <div class="card">  
+      <h2>MI HISTORIA💜</h2>  
+      <p>Tocá el enlace para conocer cómo nació Trenzas Urbanas y descubrir quién está detrás de cada trabajo.</p>  
+      <a class="btn" href="https://www.instagram.com/p/DPmoSZBj8M6/?igsh=cTdiMnlwYTk1eTZz" target="_blank">  
+        Ver mi historia en Instagram  
+      </a>  
+    </div>  
+  </section>    <section id="catalogo">  
+  <h2>Catálogo</h2>  
+  <div class="grid" id="catalogoGrid">  
+    <!-- El catálogo se generará con JavaScript -->  
+  </div>  
+</section>  <section id="promos">  
+  <h2>💜 PROMOCIONES DE JULIO</h2>    <div class="card promo">  
+    <div class="imgph">💜</div>  <h3>10% OFF en efectivo</h3>  
+
+<p>  
+  Durante todo julio obtené un <strong>10% de descuento</strong>  
+  abonando en efectivo.  
+</p>  
+
+<button onclick="aplicarDescuento(10)">  
+ 💜 Aplicar 10% OFF  
+</button>  
 </div>
 
-  </div>
+</section>  <section id="galeria">  
+  <div class="card">  
+    <h2>Galería de Trabajos</h2>  
+    <div class="galeria">  
+      <img src="IMG-1.jpg" alt="Trabajo 1">  
+      <img src="IMG-2.jpg" alt="Trabajo 2">  
+      <img src="IMG-20260120-WA0026.jpg" alt="Trabajo 3">  
+      <img src="Polish_20250906_212749490.jpg" alt="Trabajo 4">  
+      <img src="Polish_20251117_105259763.jpg" alt="Trabajo 5">  
+      <img src="Polish_20251213_201931954.jpg" alt="Trabajo 6">  
+      <img src="Polish_20260119_132342937.jpg" alt="Trabajo 7">  
+      <img src="Polish_20260124_210323654.jpg" alt="Trabajo 8">  
+      <img src="Polish_20260202_143314029.jpg" alt="Trabajo 9">  
+      <img src="Polish_20260213_110215226.jpg" alt="Trabajo 10">  
+      <img src="Polish_20260419_173438026.jpg" alt="Trabajo 11">  
+      <img src="Polish_20260510_184549120.jpg" alt="Trabajo 12">  
+      <img src="Polish_20260510_203337325.jpg" alt="Trabajo 13">  
+    </div>  
+  </div>  
+</section>  <section id="redes">  
+  <div class="card">  
+    <h2>Redes Sociales</h2>  
+    <p>Séguinos en nuestras redes para ver trabajos, promociones y novedades 💜</p>  
+    <a class="btn" href="https://www.instagram.com/trenzas.urbanas_fsa" target="_blank">Instagram</a>  
+    <br><br>  
+    <a class="btn" href="https://www.tiktok.com/@trenzas.urbanas_fsa?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>  
+    <br><br>  
+    <a class="btn" href="https://www.facebook.com/share/1AxaCwkpqf/" target="_blank">Facebook</a>  
+  </div>  
+</section>  <a class="btn float" href="https://wa.me/543705141113?text=Quiero%20reservar%20un%20turno..." target="_blank">WhatsApp</a>
 
-  <header>
-    <img src="logo.png" alt="Logo Trenzas Urbanas" class="logo">
-    <h1>Trenzas Urbanas</h1>
-    <p>Creamos estilos únicos a través de trenzas personalizadas para todas las edades.</p>
-  </header>
-
-  <!-- ========================= -->
-  <!-- CONÓCEME -->
-  <!-- ========================= -->
-
-  <section id="quienes">
-    <div class="card">
-      <h2>MI HISTORIA💜</h2>
-      <p>Tocá el enlace para conocer cómo nació Trenzas Urbanas y descubrir quién está detrás de cada trabajo.</p>
-      <a class="btn" href="https://www.instagram.com/p/DPmoSZBj8M6/?igsh=cTdiMnlwYTk1eTZz" target="_blank">
-        Ver mi historia en Instagram
-      </a>
-    </div>
-  </section>
-
-<section id="catalogo">
-  <h2>Catálogo</h2>
-  <div class="grid" id="catalogoGrid">
-    <!-- El catálogo se generará con JavaScript -->
-  </div>
-</section>
-
-</div>
-
-<div id="catalogoGrid"></div>
-
-  </section>
-
-<section id="promos">
-  <h2>💜 PROMOCIONES DE JULIO</h2>
-
-  <div class="card promo">
-    <div class="imgph">💜</div>
-
-    <h3>10% OFF en efectivo</h3>
-
-    <p>
-      Durante todo julio obtené un <strong>10% de descuento</strong>
-      abonando en efectivo.
-    </p>
-
-    <button onclick="aplicarDescuento(10)">
-     💜 Aplicar 10% OFF
-    </button>
-    </div>
-</section>
-
-<section id="galeria">
-  <div class="card">
-    <h2>Galería de Trabajos</h2>
-    <div class="galeria">
-      <img src="IMG-1.jpg" alt="Trabajo 1">
-      <img src="IMG-2.jpg" alt="Trabajo 2">
-      <img src="IMG-20260120-WA0026.jpg" alt="Trabajo 3">
-      <img src="Polish_20250906_212749490.jpg" alt="Trabajo 4">
-      <img src="Polish_20251117_105259763.jpg" alt="Trabajo 5">
-      <img src="Polish_20251213_201931954.jpg" alt="Trabajo 6">
-      <img src="Polish_20260119_132342937.jpg" alt="Trabajo 7">
-      <img src="Polish_20260124_210323654.jpg" alt="Trabajo 8">
-      <img src="Polish_20260202_143314029.jpg" alt="Trabajo 9">
-      <img src="Polish_20260213_110215226.jpg" alt="Trabajo 10">
-      <img src="Polish_20260419_173438026.jpg" alt="Trabajo 11">
-      <img src="Polish_20260510_184549120.jpg" alt="Trabajo 12">
-      <img src="Polish_20260510_203337325.jpg" alt="Trabajo 13">
-    </div>
-  </div>
-</section>
-
-<section id="redes">
-  <div class="card">
-    <h2>Redes Sociales</h2>
-    <p>Séguinos en nuestras redes para ver trabajos, promociones y novedades 💜</p>
-    <a class="btn" href="https://www.instagram.com/trenzas.urbanas_fsa" target="_blank">Instagram</a>
-    <br><br>
-    <a class="btn" href="https://www.tiktok.com/@trenzas.urbanas_fsa?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
-    <br><br>
-    <a class="btn" href="https://www.facebook.com/share/1AxaCwkpqf/" target="_blank">Facebook</a>
-  </div>
-</section>
-
-<a class="btn float" href="https://wa.me/543705141113?text=Quiero%20reservar%20un%20turno..." target="_blank">WhatsApp</a>
-
-  <script>
-  let carrito = [];
-
-  const catalogo = [
-    {
-      titulo: "TRENZAS SIMPLES SIN EXTENSIONES",
-      servicios: [
-        {
-          nombre: "FRONTALES SIMPLES",
-          descripcion:"Trenzas cocidas rectas en la parte frontal. Duración estimada: mínimo 15 días con el cuidado correspondiente.",
-          precio: 12000,
-          img: "001.jpg"
-        },
-        {
-          nombre: "FRONTALES CON DISEÑO",
-          descripcion: "Trenzas cocidas con diseño personalizado. Duración estimada: mínimo 15 días con el cuidado correspondiente.",
-          precio: 17000,
-          img: "002.jpg.webp"
-        },
-        {
-          nombre: "LATERALES SIMPLES",
-          descripcion:"Trenzas cocidas rectas en la parte lateral. Duración estimada: mínimo 15 días con el cuidado correspondiente.",
-          precio: 12000,
-          img: "003.jpg"
-        },
-        {
-          nombre: "LATERALES CON DISEÑO",
-          descripcion:"Trenzas cocidas con diseño personalizado en la parte lateral. Duración estimada: mínimo 15 días con el cuidado correspondiente.",
-          precio: 17000,
-          img: "004.jpg"
-        },
-        {
-          nombre: "CORONA COMPLETA SIMPLE",
-          descripcion: "Trenzas cocidas rectas, media cabeza de la parte frontal. Duración estimada: mínimo 15 días con el cuidado correspondiente.",
-          precio: 20000,
-          img: "005.jpg"
-        },
-        {
-          nombre: "CORONA COMPLETA CON DISEÑO",
-          descripcion: "trenzas cocidas rectas, media cabeza de la parte frontal. Duración estimada: mínimo 15 días con el cuidado correspondiente.",
-          precio: 30000,
-          img: "006.jpg.webp"
-        },
-        {
-          nombre: "VINCHA SIMPLE",
-          descripcion: "Trenzas en la zona de vincha simple. Duración estimada: mínimo 15 días con el cuidado correspondiente.",
-          precio: 10000,
-          img: "007.jpg.webp"
-        },
-        {
-          nombre: "VINCHA CON DISEÑO",
-          descripcion: "Trenzas en la zona de vincha pero con diseño personalizado. Duración estimada mínimo días con el cuidado correspondiente.",
-          precio: 15000,
-          img: "008.jpg"
-        },
-        {
-          nombre: "BOXEADORAS SIMPLES X2",
-          descripcion: "Dos trenzas simples. Duración estimada: mínimo 10 días con el cuidado correspondiente.",
-          precio: 20000,
-          img: "009.jpg"
-        },
-        {
-          nombre: "BOXEADORA CON DISEÑO",
-          descripcion: "Dos boxeadoras en los laterales pueden tener diseños personalizados. Duración estimada mínimo días con el cuidado correspondiente.",
-          precio: 30000,
-          img: "0010.jpg"
-        },
-        {
-          nombre: "CORNROWS SIMPLES",
-          descripcion: "Estilo de boxeadoras simples hasta ocho trenzas en todo el cabello. Duración estimada mínimo días con el cuidado correspondiente.",
-          precio: 35000,
-          img: "0011.jpg.webp"
-        },
-        {
-          nombre: "CORNROWS CON DISEÑO",
-          descripcion: "Estilo de boxeadoras con diseño personalizado en todo el cabello. Duración estimada mínimo días con el cuidado correspondiente.",
-          precio: 45000,
-          img: "0012.jpg.webp"
-        },
-        {
-          nombre: "CORNROWS PARA CABELLO CORTO",
-          descripcion: "El largo mínimo del cabello debe ser de 15 a 20 cm. Es obligatorio enviar foto del largo antes deconfirmar el turno, para evaluar si el trabajo es posible y garantizar un buen resultado.",
-          precio: 40000,
-          img: "0013.jpg"
-        },
-        {
-          nombre: "BOX BRAIDS / FULANIS BRAIDS SIN EXTENSIONES",
-          descripcion: "Africanas simples o con diseños con el cabello natural sin extensiones. Duración estimada mínimo 25 días con el cuidado correspondiente.",
-          precio: 60000,
-          img: "0014.jpg.webp"
-        }
-      ]
-    },
-    {
-      titulo: "TRENZAS CON EXTENSIONES KANEKALON",
-      servicios: [
-        {
-          nombre: "BOX BRAIDS MEDIUM",
-          descripcion: "Los turnos deben ser reservados con un mínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 5 paquetes y el servicio dura alrededor de 8/10 horas aproxdependiendo el largo y tamaño de las trenzas.",
-          precio: 120000,
-          img: "0015.jpg.webp"
-        },
-        {
-          nombre: "BOX BRAIDS JUMBO",
-          descripcion: "Los turnos deben ser reservados con unmínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 4 paquetes y el servicio dura alrededor de 6/8 horas aproxdependiendo el largo y tamaño de las trenzas.",
-          precio: 80000,
-          img: "0016.jpg.webp"
-        },
-        {
-          nombre: "BOX BRAIDS SMALL",
-          descripcion: "Los turnos deben ser reservados con unmínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 6 paquetes y el servicio dura alrededor de 6/8 horas aproxdependiendo el largo y tamaño de las trenzas.",
-          precio: 140000,
-          img: "0017.jpg.webp"
-        },
-        {
-        nombre: "BOX BRAIDS CORTITAS",
-          descripcion: "Los turnos deben ser reservados con unmínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 5 paquetes y el servicio dura alrededor de 6/8 horas aproxdependiendo el largo y tamaño de las trenzas.",
-          precio: 80000,
-          img: "0018.jpg"
-        },
-        {
-          nombre: "BOX BRAIDS CORTITAS CON RULOS",
-          descripcion: "Los turnos deben ser reservados con unmínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 5 paquetes y el servicio dura alrededor de 8/10 horas aproxdependiendo el largo y tamaño de las trenzas.",
-          precio: 100000,
-          img: "0020.jpg"
-        },
-        {
-          nombre: "FULANIS BRAIDS",
-          descripcion: "Los turnos deben ser reservados con unmínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 5 paquetes y el servicio dura alrededor de 8/10 horas aproxdependiendo el largo y tamaño de las trenzas.",
-          precio: 120000,
-          img: "0019.jpg"
-        }
-      ]
-    },
-    {
-      titulo: "EXTENSIONES KANEKALON Y ACCESORIOS",
-      servicios: [
-        {
-          nombre: "MICRO BRAIDS SIMPLE",
-          descripcion: "Incluye 2 paquete de kanekalon de fibra sintética de un solo tono.",
-          precio: 70000,
-          img: "0021.jpg"
-        },
-        {
-          nombre: "MICRO BRAIDS BLOQUE DE COLORES A ELECCIÓN",
-          descripcion: "Incluye hasta 4 paquetes de kanekalon de fibra sintética de varios colores.",
-          precio: 85000,
-          img: "0022.jpg"
-        },
-        {
-          nombre: "MECHAS DE KANEKALON ",
-          descripcion: "Un solo bloque de mechas de kanekalon, Especial para niñas o reflejos. Incluye hasta 1 paquetes de kanekalon de fibra sintética de un solo tono.",
-          precio: 30000,
-          img: "0023.jpg"
-        },
-        {
-          nombre: "HILOS HAIR TINSEL",
-          descripcion: "Incluye un paquete de hilos Glitters",
-          precio: 10000,
-          img: "0024.jpg"
-        },
-        {
-          nombre: "TRENZAS PLAYERAS CON ACCESORIOS",
-          descripcion: "Incluye un paquete de accesorios para trenzas sueltas",
-          precio: 10000,
-          img: "0025.jpg"
-        },
-        {
-          nombre: "TRENZAS SUELTAS CON EXTENSIONES KANEKALON",
-          descripcion: "Hasta 15 trenzas sueltas. Incluye un paquete de kanekalon de fibra sintética de un solo tono",
-          precio: 25000,
-          img: "0026.jpg"
-        },
-        {
-          nombre: "ACCESORIOS CUFF O ARGOLLAS",
-          descripcion: "Incluye hasta 10 accesorios de cualquier estilo.",
-          precio: 2000,
-          img: "0027.jpg"
-        },
-        {
-          nombre: "HILOS Y CINTAS PARA ACCESORIOS",
-          descripcion: "Podes agregar estilo a tus trenzas con hilos y cintas.",
-          precio: 2000,
-          img: "0028.jpg"
-        }
-      ]
-    },
-    {
-      titulo: "💜 Recogidos",
-      servicios: [
-        {
-          nombre: "Recogido Elegante",
-          precio: 35000,
-          img: "imagenes/recogido-elegante.jpg"
-        },
-        {
-          nombre: "Recogido con Trenzas",
-          precio: 45000,
-          img: "imagenes/recogido-trenzas.jpg"
-        }
-      ]
-    }
-  ];
-
-  const grid = document.getElementById("catalogoGrid");
-catalogo.forEach(categoria => {
-    }
-    // Agregamos el título de la categoría
-    grid.innerHTML += `<h2>${categoria.titulo}</h2>`;
-    let gridServicios = `<div class="grid">`;
-    
-    categoria.servicios.forEach(s => {
-      gridServicios += `
-        <div class="card">
-          <img src="${s.img}" class="img" alt="${s.nombre}">
-          <h3>${s.nombre}</h3>
-          <p class="descripcion">${s.descripcion}</p>
-          <p class="precio">$${s.precio.toLocaleString()}</p>
-          <button onclick="agregar('${s.nombre}', ${s.precio})">Agregar al carrito</button>
-        </div>`;
-    });
-    gridServicios += `</div>`;
-    grid.innerHTML += gridServicios;
-  });
-
-  function agregar(nombre, precio) {
-    carrito.push({ nombre, precio });
-    document.getElementById("cantidad").innerText = carrito.length;
-  }
-
-  let descuento = 0;
-
-document.getElementById("cart").onclick = function () {
-  if (carrito.length === 0) {
-    alert("Todavía no agregaste ningún servicio.");
-    return;
-  }
-
-  actualizarCarrito();
-  document.getElementById("modalCarrito").style.display = "block";
-};
-
-function cerrarCarrito() {
-  document.getElementById("modalCarrito").style.display = "none";
-}
-
-function aplicarDescuento(porcentaje) {
-  descuento = porcentaje;
-  actualizarCarrito();
-}
-
-function actualizarCarrito() {
-
-  let lista = document.getElementById("listaCarrito");
-  lista.innerHTML = "";
-
-  let subtotal = 0;
-
-  carrito.forEach((item, index) => {
-    subtotal += item.precio;
-
-    lista.innerHTML += `
-      <p>
-        ${item.nombre} - $${item.precio.toLocaleString()}
-        <button onclick="eliminar(${index})">❌</button>
-      </p>
-    `;
-  });
-
-  let total = subtotal - (subtotal * descuento / 100);
-
-  document.getElementById("subtotal").innerText = "$" + subtotal.toLocaleString();
-  document.getElementById("descuento").innerText = descuento + "%";
-  document.getElementById("total").innerText = "$" + total.toLocaleString();
-}
-
-function eliminar(i) {
-  carrito.splice(i, 1);
-  document.getElementById("cantidad").innerText = carrito.length;
-
-  if (carrito.length == 0) {
-    cerrarCarrito();
-    return;
-  }
-
-  actualizarCarrito();
-  }
-  function enviarWhatsApp() {
-
-  let subtotal = 0;
-  let mensaje = "Hola, quiero reservar:%0A%0A";
-
-  carrito.forEach(item => {
-    mensaje += "• " + item.nombre + " - $" + item.precio.toLocaleString() + "%0A";
-    subtotal += item.precio;
-  });
-
-  let total = subtotal - (subtotal * descuento / 100);
-
-  mensaje += "%0A";
-  mensaje += "Subtotal: $" + subtotal.toLocaleString() + "%0A";
-  mensaje += "Descuento aplicado: " + descuento + "%25%0A";
-  mensaje += "TOTAL: $" + total.toLocaleString();
-
-  window.open("https://wa.me/543705141113?text=" + mensaje);
-  }
-  </script>
+  <script>  
+  let carrito = [];  
   
-</body>
-</html>
+  const catalogo = [  
+    {  
+      titulo: "TRENZAS SIMPLES SIN EXTENSIONES",  
+      servicios: [  
+        {  
+          nombre: "FRONTALES SIMPLES",  
+          descripcion:"Trenzas cocidas rectas en la parte frontal. Duración estimada: mínimo 15 días con el cuidado correspondiente.",  
+          precio: 12000,  
+          img: "001.jpg"  
+        },  
+        {  
+          nombre: "FRONTALES CON DISEÑO",  
+          descripcion: "Trenzas cocidas con diseño personalizado. Duración estimada: mínimo 15 días con el cuidado correspondiente.",  
+          precio: 17000,  
+          img: "002.jpg.webp"  
+        },  
+        {  
+          nombre: "LATERALES SIMPLES",  
+          descripcion:"Trenzas cocidas rectas en la parte lateral. Duración estimada: mínimo 15 días con el cuidado correspondiente.",  
+          precio: 12000,  
+          img: "003.jpg"  
+        },  
+        {  
+          nombre: "LATERALES CON DISEÑO",  
+          descripcion:"Trenzas cocidas con diseño personalizado en la parte lateral. Duración estimada: mínimo 15 días con el cuidado correspondiente.",  
+          precio: 17000,  
+          img: "004.jpg"  
+        },  
+        {  
+          nombre: "CORONA COMPLETA SIMPLE",  
+          descripcion: "Trenzas cocidas rectas, media cabeza de la parte frontal. Duración estimada: mínimo 15 días con el cuidado correspondiente.",  
+          precio: 20000,  
+          img: "005.jpg"  
+        },  
+        {  
+          nombre: "CORONA COMPLETA CON DISEÑO",  
+          descripcion: "trenzas cocidas rectas, media cabeza de la parte frontal. Duración estimada: mínimo 15 días con el cuidado correspondiente.",  
+          precio: 30000,  
+          img: "006.jpg.webp"  
+        },  
+        {  
+          nombre: "VINCHA SIMPLE",  
+          descripcion: "Trenzas en la zona de vincha simple. Duración estimada: mínimo 15 días con el cuidado correspondiente.",  
+          precio: 10000,  
+          img: "007.jpg.webp"  
+        },  
+        {  
+          nombre: "VINCHA CON DISEÑO",  
+          descripcion: "Trenzas en la zona de vincha pero con diseño personalizado. Duración estimada mínimo días con el cuidado correspondiente.",  
+          precio: 15000,  
+          img: "008.jpg"  
+        },  
+        {  
+          nombre: "BOXEADORAS SIMPLES X2",  
+          descripcion: "Dos trenzas simples. Duración estimada: mínimo 10 días con el cuidado correspondiente.",  
+          precio: 20000,  
+          img: "009.jpg"  
+        },  
+        {  
+          nombre: "BOXEADORA CON DISEÑO",  
+          descripcion: "Dos boxeadoras en los laterales pueden tener diseños personalizados. Duración estimada mínimo días con el cuidado correspondiente.",  
+          precio: 30000,  
+          img: "0010.jpg"  
+        },  
+        {  
+          nombre: "CORNROWS SIMPLES",  
+          descripcion: "Estilo de boxeadoras simples hasta ocho trenzas en todo el cabello. Duración estimada mínimo días con el cuidado correspondiente.",  
+          precio: 35000,  
+          img: "0011.jpg.webp"  
+        },  
+        {  
+          nombre: "CORNROWS CON DISEÑO",  
+          descripcion: "Estilo de boxeadoras con diseño personalizado en todo el cabello. Duración estimada mínimo días con el cuidado correspondiente.",  
+          precio: 45000,  
+          img: "0012.jpg.webp"  
+        },  
+        {  
+          nombre: "CORNROWS PARA CABELLO CORTO",  
+          descripcion: "El largo mínimo del cabello debe ser de 15 a 20 cm. Es obligatorio enviar foto del largo antes deconfirmar el turno, para evaluar si el trabajo es posible y garantizar un buen resultado.",  
+          precio: 40000,  
+          img: "0013.jpg"  
+        },  
+        {  
+          nombre: "BOX BRAIDS / FULANIS BRAIDS SIN EXTENSIONES",  
+          descripcion: "Africanas simples o con diseños con el cabello natural sin extensiones. Duración estimada mínimo 25 días con el cuidado correspondiente.",  
+          precio: 60000,  
+          img: "0014.jpg.webp"  
+        }  
+      ]  
+    },  
+    {  
+      titulo: "TRENZAS CON EXTENSIONES KANEKALON",  
+      servicios: [  
+        {  
+          nombre: "BOX BRAIDS MEDIUM",  
+          descripcion: "Los turnos deben ser reservados con un mínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 5 paquetes y el servicio dura alrededor de 8/10 horas aproxdependiendo el largo y tamaño de las trenzas.",  
+          precio: 120000,  
+          img: "0015.jpg.webp"  
+        },  
+        {  
+          nombre: "BOX BRAIDS JUMBO",  
+          descripcion: "Los turnos deben ser reservados con unmínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 4 paquetes y el servicio dura alrededor de 6/8 horas aproxdependiendo el largo y tamaño de las trenzas.",  
+          precio: 80000,  
+          img: "0016.jpg.webp"  
+        },  
+        {  
+          nombre: "BOX BRAIDS SMALL",  
+          descripcion: "Los turnos deben ser reservados con unmínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 6 paquetes y el servicio dura alrededor de 6/8 horas aproxdependiendo el largo y tamaño de las trenzas.",  
+          precio: 140000,  
+          img: "0017.jpg.webp"  
+        },  
+        {  
+        nombre: "BOX BRAIDS CORTITAS",  
+          descripcion: "Los turnos deben ser reservados con unmínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 5 paquetes y el servicio dura alrededor de 6/8 horas aproxdependiendo el largo y tamaño de las trenzas.",  
+          precio: 80000,  
+          img: "0018.jpg"  
+        },  
+        {  
+          nombre: "BOX BRAIDS CORTITAS CON RULOS",  
+          descripcion: "Los turnos deben ser reservados con unmínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 5 paquetes y el servicio dura alrededor de 8/10 horas aproxdependiendo el largo y tamaño de las trenzas.",  
+          precio: 100000,  
+          img: "0020.jpg"  
+        },  
+        {  
+          nombre: "FULANIS BRAIDS",  
+          descripcion: "Los turnos deben ser reservados con unmínimo de 2 días de anticipacion abonando el 30% como seña. Incluye 5 paquetes y el servicio dura alrededor de 8/10 horas aproxdependiendo el largo y tamaño de las trenzas.",  
+          precio: 120000,  
+          img: "0019.jpg"  
+        }  
+      ]  
+    },  
+    {  
+      titulo: "EXTENSIONES KANEKALON Y ACCESORIOS",  
+      servicios: [  
+        {  
+          nombre: "MICRO BRAIDS SIMPLE",  
+          descripcion: "Incluye 2 paquete de kanekalon de fibra sintética de un solo tono.",  
+          precio: 70000,  
+          img: "0021.jpg"  
+        },  
+        {  
+          nombre: "MICRO BRAIDS BLOQUE DE COLORES A ELECCIÓN",  
+          descripcion: "Incluye hasta 4 paquetes de kanekalon de fibra sintética de varios colores.",  
+          precio: 85000,  
+          img: "0022.jpg"  
+        },  
+        {  
+          nombre: "MECHAS DE KANEKALON ",  
+          descripcion: "Un solo bloque de mechas de kanekalon, Especial para niñas o reflejos. Incluye hasta 1 paquetes de kanekalon de fibra sintética de un solo tono.",  
+          precio: 30000,  
+          img: "0023.jpg"  
+        },  
+        {  
+          nombre: "HILOS HAIR TINSEL",  
+          descripcion: "Incluye un paquete de hilos Glitters",  
+          precio: 10000,  
+          img: "0024.jpg"  
+        },  
+        {  
+          nombre: "TRENZAS PLAYERAS CON ACCESORIOS",  
+          descripcion: "Incluye un paquete de accesorios para trenzas sueltas",  
+          precio: 10000,  
+          img: "0025.jpg"  
+        },  
+        {  
+          nombre: "TRENZAS SUELTAS CON EXTENSIONES KANEKALON",  
+          descripcion: "Hasta 15 trenzas sueltas. Incluye un paquete de kanekalon de fibra sintética de un solo tono",  
+          precio: 25000,  
+          img: "0026.jpg"  
+        },  
+        {  
+          nombre: "ACCESORIOS CUFF O ARGOLLAS",  
+          descripcion: "Incluye hasta 10 accesorios de cualquier estilo.",  
+          precio: 2000,  
+          img: "0027.jpg"  
+        },  
+        {  
+          nombre: "HILOS Y CINTAS PARA ACCESORIOS",  
+          descripcion: "Podes agregar estilo a tus trenzas con hilos y cintas.",  
+          precio: 2000,  
+          img: "0028.jpg"  
+        }  
+      ]  
+    },  
+    {  
+      titulo: "💜 Recogidos",  
+      servicios: [  
+        {  
+          nombre: "Recogido Elegante",  
+          precio: 35000,  
+          img: "imagenes/recogido-elegante.jpg"  
+        },  
+        {  
+          nombre: "Recogido con Trenzas",  
+          precio: 45000,  
+          img: "imagenes/recogido-trenzas.jpg"  
+        }  
+      ]  
+    }  
+  ];  
+  
+  const grid = document.getElementById("catalogoGrid");  
+  
+  catalogo.forEach(categoria => {  
+    // Agregamos el título de la categoría  
+    grid.innerHTML += `<h2>${categoria.titulo}</h2>`;  
+    let gridServicios = `<div class="grid">`;  
+      
+    categoria.servicios.forEach(s => {  
+      gridServicios += `  
+        <div class="card">  
+          <img src="${s.img}" class="img" alt="${s.nombre}">  
+          <h3>${s.nombre}</h3>  
+          <p class="descripcion">${s.descripcion}</p>  
+          <p class="precio">$${s.precio.toLocaleString()}</p>  
+          <button onclick="agregar('${s.nombre}', ${s.precio})">Agregar al carrito</button>  
+        </div>`;  
+    });  
+    gridServicios += `</div>`;  
+    grid.innerHTML += gridServicios;  
+  });  
+  
+  function agregar(nombre, precio) {  
+    carrito.push({ nombre, precio });  
+    document.getElementById("cantidad").innerText = carrito.length;  
+  }  
+  
+  let descuento = 0;  
+  
+document.getElementById("cart").onclick = function () {  
+  if (carrito.length === 0) {  
+    alert("Todavía no agregaste ningún servicio.");  
+    return;  
+  }  
+  
+  actualizarCarrito();  
+  document.getElementById("modalCarrito").style.display = "block";  
+};  
+  
+function cerrarCarrito() {  
+  document.getElementById("modalCarrito").style.display = "none";  
+}  
+  
+function aplicarDescuento(porcentaje) {  
+  descuento = porcentaje;  
+  actualizarCarrito();  
+}  
+  
+function actualizarCarrito() {  
+  
+  let lista = document.getElementById("listaCarrito");  
+  lista.innerHTML = "";  
+  
+  let subtotal = 0;  
+  
+  carrito.forEach((item, index) => {  
+    subtotal += item.precio;  
+  
+    lista.innerHTML += `  
+      <p>  
+        ${item.nombre} - $${item.precio.toLocaleString()}  
+        <button onclick="eliminar(${index})">❌</button>  
+      </p>  
+    `;  
+  });  
+  
+  let total = subtotal - (subtotal * descuento / 100);  
+  
+  document.getElementById("subtotal").innerText = "$" + subtotal.toLocaleString();  
+  document.getElementById("descuento").innerText = descuento + "%";  
+  document.getElementById("total").innerText = "$" + total.toLocaleString();  
+}  
+  
+function eliminar(i) {  
+  carrito.splice(i, 1);  
+  document.getElementById("cantidad").innerText = carrito.length;  
+  
+  if (carrito.length == 0) {  
+    cerrarCarrito();  
+    return;  
+  }  
+  
+  actualizarCarrito();  
+  }  
+  function enviarWhatsApp() {  
+  
+  let subtotal = 0;  
+  let mensaje = "Hola, quiero reservar:%0A%0A";  
+  
