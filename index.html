@@ -582,6 +582,10 @@ grid.innerHTML += gridServicios;
 }
 
 mostrarCatalogo();
+    function filtrar(categoria){
+
+mostrarCatalogo(categoria);
+    }
     // Agregamos el título de la categoría
     grid.innerHTML += `<h2>${categoria.titulo}</h2>`;
     let gridServicios = `<div class="grid">`;
