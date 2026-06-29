@@ -613,7 +613,26 @@ function eliminar(i) {
   }
 
   actualizarCarrito();
-    }
+  }
+  function enviarWhatsApp() {
+
+  let subtotal = 0;
+  let mensaje = "Hola, quiero reservar:%0A%0A";
+
+  carrito.forEach(item => {
+    mensaje += "• " + item.nombre + " - $" + item.precio.toLocaleString() + "%0A";
+    subtotal += item.precio;
+  });
+
+  let total = subtotal - (subtotal * descuento / 100);
+
+  mensaje += "%0A";
+  mensaje += "Subtotal: $" + subtotal.toLocaleString() + "%0A";
+  mensaje += "Descuento aplicado: " + descuento + "%25%0A";
+  mensaje += "TOTAL: $" + total.toLocaleString();
+
+  window.open("https://wa.me/543705141113?text=" + mensaje);
+  }
   </script>
   
 </body>
