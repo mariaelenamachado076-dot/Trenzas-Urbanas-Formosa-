@@ -474,7 +474,35 @@
   
   const grid = document.getElementById("catalogoGrid");  
   
-  catalogo.forEach(categoria => {  
+  catalogo.forEach(categoria => {
+
+  let html = `
+    <div class="card">
+      <h2>${categoria.titulo}</h2>
+    </div>
+
+    <div class="grid">
+  `;
+
+  categoria.servicios.forEach(s => {
+    html += `
+      <div class="card">
+        <img src="${s.img || ''}" alt="${s.nombre}">
+        <h3>${s.nombre}</h3>
+        <p class="descripcion">${s.descripcion || ''}</p>
+        <p class="precio">$${Number(s.precio).toLocaleString()}</p>
+        <button onclick="agregar('${s.nombre}', ${s.precio})">
+          Agregar al carrito
+        </button>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+
+  grid.innerHTML += html;
+
+});
     // Agregamos el título de la categoría  
     grid.innerHTML += `<h2>${categoria.titulo}</h2>`;  
     let gridServicios = `<div class="grid">`;  
