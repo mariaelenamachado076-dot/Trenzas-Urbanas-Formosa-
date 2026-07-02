@@ -573,4 +573,159 @@
         },
         {
           nombre: "COLETA CON TRENZAS EN MEDIA CABEZA SIN EXTENSIONES",
-          descripcion: "Coleta alta con trezas con el cabello natural, cuya du
+          descripcion: "Coleta alta con trezas con el cabello natural, cuya duración varía entre 1 y 4 semanas dependiendo el cuidado.",
+          precio: 30000,
+          img: "0040.jpg"
+        },
+        {
+          nombre: "COLETA DESMONTABLE SIMPLE",
+          descripcion: "incluye un paquete de kanekalon, y mide aproximadamente 90 cm de largo. Coletas desmontables de kanekalon de fibra sintética que imitan el movimiento del cabello natural, son ideales para cambiar el look al instante sin dañar tu pelo y se colocan fácilmente. Es resistente al calor (planchar únicamente a temperatura mínima para evitar quemar la fibra).",
+          precio: 20000,
+          img: "0037.jpg"
+        },
+        {
+          nombre: "COLETA DESMONTABLE CON MÁS VOLUMEN",
+          descripcion: "incluye 2 paquetes de kanekalon para más volumen y largo. Mide aproximadamente 90 cm de largo o un poquito más. Coletas desmontable de kanekalon de fibra sintética que imitan el movimiento del cabello natural, son ideales para cambiar el look al instante sin dañar tu pelo y se colocan fácilmente. es resistente al calor (planchar únicamente a temperatura mínima para evitar quemar la fibra).",
+          precio: 35000,
+          img: "0038.jpg"
+        },
+        {
+          nombre: "COLETA DESMONTABLE DE RUMI",
+          descripcion: "Coleta de RUMI de las k-pop Demon Hunters (las guerreras k-pop), es desmontables para varios usos",
+          precio: 25000,
+          img: "0042.jpg"
+        },
+        {
+          nombre: "PONY BRAIDS COMPLETO",
+          descripcion: "Coleta alta con trenza hasta en la nuca o frente, duración varía entre dos y cinco semanas dependiendo el cuidado.",
+          precio: 65000,
+          img: "0049.jpg"
+        }
+      ]
+    },
+    {
+      titulo: "PEINADOS Y RECOGIDOS",
+      servicios: [
+        {
+          nombre: "PEINADOS SOCIALES SIMPLES",
+          descripcion: " Peinados o Recogidos con bucles y trenzas.",
+          precio: 45000,
+          img: "0035.jpg"
+        },
+        {
+          nombre: "RECOGIDO COMPLETO CON TRENZAS",
+          descripcion: "Especial para eventos folclóricos o elegantes.",
+          precio: 20000,
+          img: "0034.jpg"
+        }
+      ]
+    }
+  ];
+
+  const grid = document.getElementById("catalogoGrid");
+
+  catalogo.forEach(categoria => {
+    // Agregamos el título de la categoría
+    grid.innerHTML += `<h2>${categoria.titulo}</h2>`;
+    let gridServicios = `<div class="grid">`;
+    
+    categoria.servicios.forEach(s => {
+      gridServicios += `
+        <div class="card">
+          <img src="${s.img}" class="img" alt="${s.nombre}">
+          <h3>${s.nombre}</h3>
+          <p class="descripcion">${s.descripcion}</p>
+          <p class="precio">$${s.precio.toLocaleString()}</p>
+          <button onclick="agregar('${s.nombre}', ${s.precio})">Agregar al carrito</button>
+        </div>`;
+    });
+    gridServicios += `</div>`;
+    grid.innerHTML += gridServicios;
+  });
+
+  function agregar(nombre, precio) {
+    carrito.push({ nombre, precio });
+    document.getElementById("cantidad").innerText = carrito.length;
+  }
+
+  let descuento = 0;
+
+document.getElementById("cart").onclick = function () {
+  if (carrito.length === 0) {
+    alert("Todavía no agregaste ningún servicio.");
+    return;
+  }
+
+  actualizarCarrito();
+  document.getElementById("modalCarrito").style.display = "block";
+};
+
+function cerrarCarrito() {
+  document.getElementById("modalCarrito").style.display = "none";
+}
+
+function aplicarDescuento(porcentaje) {
+  descuento = porcentaje;
+  actualizarCarrito();
+}
+
+function actualizarCarrito() {
+
+  let lista = document.getElementById("listaCarrito");
+  lista.innerHTML = "";
+
+  let subtotal = 0;
+
+  carrito.forEach((item, index) => {
+    subtotal += item.precio;
+
+    lista.innerHTML += `
+      <p>
+        ${item.nombre} - $${item.precio.toLocaleString()}
+        <button onclick="eliminar(${index})">❌</button>
+      </p>
+    `;
+  });
+
+  let total = subtotal - (subtotal * descuento / 100);
+
+  document.getElementById("subtotal").innerText = "$" + subtotal.toLocaleString();
+  document.getElementById("descuento").innerText = descuento + "%";
+  document.getElementById("total").innerText = "$" + total.toLocaleString();
+}
+
+function eliminar(i) {
+  carrito.splice(i, 1);
+  document.getElementById("cantidad").innerText = carrito.length;
+
+  if (carrito.length == 0) {
+    cerrarCarrito();
+    return;
+  }
+
+  actualizarCarrito();
+  }
+  function enviarWhatsApp() {
+
+  let subtotal = 0;
+  let mensaje = "Hola, quiero reservar este turno:%0A%0A";
+
+  carrito.forEach(item => {
+    mensaje += "• " + item.nombre + " - $" + item.precio.toLocaleString() + "%0A";
+    subtotal += item.precio;
+  });
+
+  let total = subtotal - (subtotal * descuento / 100);
+
+  mensaje += "%0A";
+  mensaje += "Subtotal: $" + subtotal.toLocaleString() + "%0A";
+  mensaje += "Descuento aplicado: " + descuento + "%25%0A";
+  mensaje += "TOTAL: $" + total.toLocaleString();
+
+  window.open("https://wa.me/543705141113?text=" + mensaje);
+  }
+  </script>
+  
+</body>
+</html>
+
