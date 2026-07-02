@@ -661,20 +661,51 @@ grid-template-columns:1fr;
   const grid = document.getElementById("catalogoGrid");
 
   catalogo.forEach(categoria => {
-    // Agregamos el título de la categoría
-    grid.innerHTML += `<h2>${categoria.titulo}</h2>`;
-    let gridServicios = `<div class="grid">`;
-    
-    categoria.servicios.forEach(s => {
-      gridServicios += `
-        <div class="card">
-          <img src="${s.img}" class="img" alt="${s.nombre}">
-          <h3>${s.nombre}</h3>
-          <p class="descripcion">${s.descripcion}</p>
-          <p class="precio">$${s.precio.toLocaleString()}</p>
-          <button onclick="agregar('${s.nombre}', ${s.precio})">Agregar al carrito</button>
-        </div>`;
-    });
+
+grid.innerHTML += `
+<div class="categoria">
+
+<h2 class="titulo-categoria">
+${categoria.titulo}
+</h2>
+
+<div class="grid">
+`;
+
+categoria.servicios.forEach(s=>{
+
+grid.innerHTML += `
+
+<div class="card">
+
+<img src="${s.img}" alt="${s.nombre}">
+
+<h3>${s.nombre}</h3>
+
+<p class="descripcion">
+${s.descripcion}
+</p>
+
+<p class="precio">
+$${s.precio.toLocaleString()}
+</p>
+
+<button onclick="agregar('${s.nombre}',${s.precio})">
+Agregar al carrito
+</button>
+
+</div>
+
+`;
+
+});
+
+grid.innerHTML += `
+</div>
+</div>
+`;
+
+});
     gridServicios += `</div>`;
     grid.innerHTML += gridServicios;
   });
